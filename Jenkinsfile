@@ -29,13 +29,7 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
        /*
-	withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
-        def registry_url = "registry.hub.docker.com/"
-        bat "docker login -u 5dd17cd3519a  -p Casablanca@235689  https://registry.hub.docker.com"
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-        }*/
+
 	 docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
@@ -45,4 +39,4 @@ node {
 
 
     }
-}
+
