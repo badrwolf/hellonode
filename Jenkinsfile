@@ -36,7 +36,7 @@ node {
 	 	sh " docker push 5dd17cd3519a/hellonode:latest"
 	//app.push("${env.BUILD_NUMBER}")
            // app.push("latest")
-
+					
         }
     
    }
