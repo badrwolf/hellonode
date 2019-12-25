@@ -23,20 +23,21 @@ node {
         }
     }
 
+  
+ 
+
     stage('Push image') {
-        /* Finally, we'll push the image with two tags:
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag.
-         * Pushing multiple tags is cheap, as all the layers are reused. */
-       
+    withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+        def registry_url = "registry.hub.docker.com/"
+        bat "docker login -u 5dd17cd3519a -p Casablanca@235689 ${registry_url}"
+        docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
+            // Push your image now
+        docker push 5dd17cd3519a/docker:tagname
 
-	 docker.withRegistry('https://hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+	//    bat "docker push username/foldername:build"
         }
-
     }
-
+}
 
     }
 
