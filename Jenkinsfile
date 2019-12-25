@@ -27,18 +27,18 @@ node {
  
 
     stage('Push image') {
-  	//  withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+  	  withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
         def registry_url = "registry.hub.docker.com/"
-       // sh "docker login -u 5dd17cd3519a -p Casablanca@235689 ${registry_url}"
+        sh "docker login -u 5dd17cd3519a -p Casablanca@235689 "
         docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
-            // Push your image now
-       	   //	bat " docker push 5dd17cd3519a/docker:tagname "
-	app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+           //  Push your image now
+       	   	sh " docker push 5dd17cd3519a/getintodevops/hellonode "
+	//app.push("${env.BUILD_NUMBER}")
+           // app.push("latest")
 
         }
     
    }
 
     }
-
+}
