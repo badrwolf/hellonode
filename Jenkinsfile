@@ -32,8 +32,9 @@ node {
         bat "docker login -u 5dd17cd3519a -p Casablanca@235689 ${registry_url}"
         docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
             // Push your image now
-       		bat " docker push 5dd17cd3519a/docker:tagname "
-
+       	   //	bat " docker push 5dd17cd3519a/docker:tagname "
+	app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
 
         }
     }
