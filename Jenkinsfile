@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("getintodevops/hellonode")
+        app = docker.build("hellonode")
     }
 
     stage('Test image') {
@@ -32,7 +32,7 @@ node {
         sh "docker login -u 5dd17cd3519a -p Casablanca@235689 "
         docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
            //  Push your image now
-       	   	sh " docker push 5dd17cd3519a/docker:latest "
+       	   	sh " docker push 5dd17cd3519a/hellonode:latest "
 	//app.push("${env.BUILD_NUMBER}")
            // app.push("latest")
 
