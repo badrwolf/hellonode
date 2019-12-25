@@ -32,7 +32,8 @@ node {
         sh "docker login -u 5dd17cd3519a -p Casablanca@235689 "
         docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
            //  Push your image now
-       	   	sh " docker push 5dd17cd3519a/hellonode:latest"
+       		sh "docker login -u 5dd17cd3519a -p Casablanca@235689 "  
+	 	sh " docker push 5dd17cd3519a/hellonode:latest"
 	//app.push("${env.BUILD_NUMBER}")
            // app.push("latest")
 
